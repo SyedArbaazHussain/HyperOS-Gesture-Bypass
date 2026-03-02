@@ -10,7 +10,6 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        // The official LSPosed/Xposed API repository
         maven { url 'https://api.xposed.info/' }
     }
 }

@@ -1,5 +1,7 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
 
 android {
     namespace 'com.arbaaz.hyperos.gesture.bypass'
@@ -12,7 +14,9 @@ android {
         versionCode 3
         versionName "1.2"
 
-        ndk { abiFilters "arm64-v8a" }
+        ndk {
+            abiFilters "arm64-v8a"
+        }
     }
 
     buildTypes {
@@ -21,9 +25,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 }
 
 dependencies {
     compileOnly 'de.robv.android.xposed:api:82'
-    // No implementation dependencies to keep the module footprint minimal and crash-proof
 }
