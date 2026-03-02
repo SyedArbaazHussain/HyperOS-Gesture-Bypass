@@ -40,6 +40,7 @@ dependencies {
     compileOnly 'de.robv.android.xposed:api:82'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    // libsu is the industry standard for stable root shell management
+    
+    // Updated libsu dependency
     implementation 'com.github.topjohnwu.libsu:core:5.2.2'
 }

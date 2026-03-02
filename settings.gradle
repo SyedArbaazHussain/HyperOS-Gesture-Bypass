@@ -10,8 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        // Essential for the Xposed API dependency
         maven { url 'https://api.xposed.info/' }
+        // Add this line below
+        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "HyperOS-Gesture-Bypass"
