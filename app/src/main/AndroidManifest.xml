@@ -7,6 +7,9 @@
         android:label="HyperOS Gesture Bypass"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+<meta-data
+    android:name="xposedscope"
+    android:resource="@array/xposedscope" />
 
         <meta-data
             android:name="xposedmodule"
