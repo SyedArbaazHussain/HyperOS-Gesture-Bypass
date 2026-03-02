@@ -5,7 +5,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.topjohnwu.privileged.Shell
+
+import com.topjohnwu.superuser.Shell
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,12 +33,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun executeRootCommands(commands: List<String>, successMsg: String) {
-        val result = Shell.cmd(*commands.toTypedArray()).exec()
-        if (result.isSuccess) {
-            Toast.makeText(this, successMsg, Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(this, "Root Access Denied or Failed", Toast.LENGTH_LONG).show()
+private fun executeRootCommands(commands: List<String>, successMsg: String) {
+        // Run commands in a background shell for better performance
+        Shell.getShell { shell ->
+            if (shell.isRoot) {
+                Shell.cmd(*commands.toTypedArray()).submit { result ->
+                    if (result.isSuccess) {
+                        runOnUiThread { Toast.makeText(this, successMsg, Toast.LENGTH_SHORT).show() }
+                    }
+                }
+            } else {
+                runOnUiThread { Toast.makeText(this, "Root Access Denied", Toast.LENGTH_LONG).show() }
+            }
         }
     }
-}
