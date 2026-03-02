@@ -10,6 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // Essential for the Xposed API dependency
         maven { url 'https://api.xposed.info/' }
     }
 }
