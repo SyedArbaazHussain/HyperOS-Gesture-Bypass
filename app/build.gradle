@@ -1,11 +1,4 @@
-repositories {
-    google()
-    mavenCentral()
-}
-
 apply plugin: 'com.android.application'
-// If you use Kotlin in your project, also add:
-// apply plugin: 'kotlin-android' 
 
 android {
     namespace 'com.arbaaz.hyperos.gesture.bypass'
@@ -32,6 +25,7 @@ android {
 }
 
 dependencies {
-    compileOnly 'org.lsposed.lsposed:api:1.0.0'
+    // Updated to 1.0.3 which is more widely cached on Maven mirrors
+    compileOnly 'org.lsposed.lsposed:api:1.0.3'
     implementation 'androidx.appcompat:appcompat:1.6.1'
 }

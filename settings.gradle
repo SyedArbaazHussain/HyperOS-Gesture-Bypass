@@ -6,14 +6,12 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    // PREFER_SETTINGS ensures all modules use these central repositories
-    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS) 
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
-        // Essential: This is where the LSPosed API lives
+        // Essential repository for the LSPosed API
         maven { url 'https://api.xposed.info/' }
-        // Backup: Some newer builds use JitPack
         maven { url 'https://jitpack.io' }
     }
 }
