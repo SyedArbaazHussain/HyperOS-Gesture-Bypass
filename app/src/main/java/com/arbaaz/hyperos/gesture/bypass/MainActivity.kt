@@ -2,29 +2,22 @@ package com.arbaaz.hyperos.gesture.bypass
 
 import android.app.Activity
 import android.os.Bundle
-import android.widget.LinearLayout
 import android.widget.TextView
-import android.graphics.Color
 import android.view.Gravity
+import android.graphics.Color
 
 class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        val layout = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            gravity = Gravity.CENTER
-            setBackgroundColor(Color.WHITE)
-        }
-
-        val textView = TextView(this).apply {
-            text = "HyperOS Gesture Bypass\n\nStatus: Build Successful\n\nEnable in LSPosed and Reboot."
-            textSize = 20f
+        val tv = TextView(this).apply {
+            text = "HyperOS Gesture Bypass\n\nStatus: Module Active\n\nEnsure 'System Framework' is enabled in LSPosed and Reboot."
+            textSize = 18f
             setTextColor(Color.BLACK)
             gravity = Gravity.CENTER
+            setPadding(60, 60, 60, 60)
         }
         
-        layout.addView(textView)
-        setContentView(layout)
+        setContentView(tv)
     }
 }

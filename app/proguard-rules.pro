@@ -2,3 +2,4 @@
 -keepattributes *Annotation*
 -keep class de.robv.android.xposed.** { *; }
 -keep class com.arbaaz.hyperos.gesture.bypass.HyperOSGestureHook { *; }
+-keep class com.arbaaz.hyperos.gesture.bypass.MainActivity { *; }

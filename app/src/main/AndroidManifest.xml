@@ -2,33 +2,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="HyperOS Gesture Bypass"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-<meta-data
-    android:name="xposedscope"
-    android:resource="@array/xposedscope" />
+        android:icon="@mipmap/ic_launcher"
+        android:hasCode="true">
 
         <meta-data
             android:name="xposedmodule"
             android:value="true" />
         <meta-data
             android:name="xposeddescription"
-            android:value="Bypasses 3rd-party launcher gesture locks on HyperOS 3" />
+            android:value="Enable native Xiaomi gestures for 3rd party launchers on HyperOS 3" />
         <meta-data
             android:name="xposedminversion"
-            android:value="93" />
+            android:value="82" />
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/xposedscope" />
 
         <activity
-    android:name=".MainActivity"
-    android:exported="true"
-    android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar">
-    <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter>
-</activity>
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

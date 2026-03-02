@@ -8,12 +8,10 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 class HyperOSGestureHook : IXposedHookLoadPackage {
     override fun handleLoadPackage(lpparam: LoadPackageParam) {
         
-        // Target the System Framework - This is where the 'Rules' are kept
         if (lpparam.packageName == "android") {
             val classLoader = lpparam.classLoader
 
-            // 1. Lie to the system about which launcher is 'Valid'
-            // This prevents the automatic switch back to 3-button mode
+            // Bypass the Policy check that forces buttons on 3rd party launchers
             try {
                 XposedHelpers.findAndHookMethod(
                     "com.android.server.wm.MiuiGesturePolicy",
@@ -22,25 +20,26 @@ class HyperOSGestureHook : IXposedHookLoadPackage {
                     XC_MethodReplacement.returnConstant(true)
                 )
                 
-                // New for HyperOS 3: Keep gestures alive even after launcher change detected
+                // Prevent auto-reset when launcher change is detected
                 XposedHelpers.findAndHookMethod(
                     "com.android.server.wm.MiuiGesturePolicy",
                     classLoader,
                     "keepGestureNavAfterLauncherChange",
                     XC_MethodReplacement.returnConstant(true)
                 )
-            } catch (t: Throwable) {
-                // Fallback for different HyperOS point releases
-                XposedHelpers.findAndHookMethod(
-                    "com.android.server.policy.MiuiShortcutPolicy",
-                    classLoader,
-                    "isGestureModeWithThirdPartyLauncher",
-                    XC_MethodReplacement.returnConstant(true)
-                )
+            } catch (e: Throwable) {
+                // Fallback for sub-versions of HyperOS
+                try {
+                    XposedHelpers.findAndHookMethod(
+                        "com.android.server.policy.MiuiShortcutPolicy",
+                        classLoader,
+                        "isGestureModeWithThirdPartyLauncher",
+                        XC_MethodReplacement.returnConstant(true)
+                    )
+                } catch (t: Throwable) {}
             }
 
-            // 2. Force Hardware Compatibility
-            // Tells the OS the hardware supports hiding the bar regardless of app
+            // Patch hardware info to allow hiding navigation bar
             XposedHelpers.findAndHookMethod(
                 "miui.util.HardwareInfo",
                 classLoader,
@@ -49,8 +48,8 @@ class HyperOSGestureHook : IXposedHookLoadPackage {
             )
         }
 
-        // 3. Target System UI - This is where the 'Visuals' are drawn
         if (lpparam.packageName == "com.android.systemui") {
+            // Keep the gesture listeners alive in the UI process
             XposedHelpers.findAndHookMethod(
                 "com.android.systemui.navigationbar.gestural.MiuiEdgeBackGestureHandler",
                 lpparam.classLoader,
