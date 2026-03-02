@@ -10,9 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        // Essential repository for the LSPosed API
-        maven { url 'https://api.xposed.info/' }
+        // JitPack is now the primary source for LSPosed API
         maven { url 'https://jitpack.io' }
+        maven { url 'https://api.xposed.info/' }
     }
 }
 rootProject.name = "HyperOS-Gesture-Bypass"
