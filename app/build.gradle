@@ -25,7 +25,7 @@ android {
 }
 
 dependencies {
-    // Official JitPack coordinates for the LSPosed API
-    compileOnly 'com.github.LSPosed:LSPosed.API:1.0.3'
+    // Standard Xposed API coordinate
+    compileOnly 'de.robv.android.xposed:api:82'
     implementation 'androidx.appcompat:appcompat:1.6.1'
 }

@@ -10,8 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        // JitPack is now the primary source for LSPosed API
-        maven { url 'https://jitpack.io' }
+        // The official LSPosed/Xposed API repository
         maven { url 'https://api.xposed.info/' }
     }
 }
