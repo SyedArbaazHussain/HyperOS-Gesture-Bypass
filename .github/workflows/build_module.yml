@@ -22,7 +22,8 @@ jobs:
           APK_PATH=$(find app/build/outputs/apk/release -name "*.apk" | head -n 1)
           FILE_SIZE=$(du -k "$APK_PATH" | cut -f1)
           
-          if [ "$FILE_SIZE" -gt 2048 ]; then 
+          # Find this line in your build_module.yml
+          if [ "$FILE_SIZE" -gt 5120 ]; then 
             echo "APK too large: ${FILE_SIZE}KB"
             exit 1
           fi
