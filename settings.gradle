@@ -6,10 +6,15 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT) // This tells app/build.gradle to use its own repo block
+    // PREFER_SETTINGS ensures all modules use these central repositories
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS) 
     repositories {
         google()
         mavenCentral()
+        // Essential: This is where the LSPosed API lives
+        maven { url 'https://api.xposed.info/' }
+        // Backup: Some newer builds use JitPack
+        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "HyperOS-Gesture-Bypass"
