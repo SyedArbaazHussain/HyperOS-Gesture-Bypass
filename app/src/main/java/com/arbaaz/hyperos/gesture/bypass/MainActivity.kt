@@ -47,3 +47,4 @@ private fun executeRootCommands(commands: List<String>, successMsg: String) {
             }
         }
     }
+}
