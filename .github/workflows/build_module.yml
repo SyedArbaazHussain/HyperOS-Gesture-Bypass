@@ -18,8 +18,14 @@ jobs:
           ./increment_version.sh ${{ github.ref_name }}
           ./gradlew assembleRelease
           
-          APK_PATH=\
-          if [ \ -gt 2048 ]; then exit 1; fi
+          # Manually fixed shell variables
+          APK_PATH=$(find app/build/outputs/apk/release -name "*.apk" | head -n 1)
+          FILE_SIZE=$(du -k "$APK_PATH" | cut -f1)
+          
+          if [ "$FILE_SIZE" -gt 2048 ]; then 
+            echo "APK too large: ${FILE_SIZE}KB"
+            exit 1
+          fi
 
       - name: Sign APK
         uses: r0adkll/sign-android-release@v1
